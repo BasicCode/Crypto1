@@ -43,7 +43,7 @@ if __name__ == '__main__':
 		decoded_texts.append(ctools.decodeString(key_list, text))
 	
 	#Run a fitness score on each list
-	print("Calculating quadgram scores for " + str(len(decoded_texts) * len(good_strings)) + " candidates...")
+	print("Calculating quadgram scores for " + str(len(decoded_texts) * len(key_list)) + " candidates...")
 	all_scores = []
 	for arrays in decoded_texts:
 		scores = []
@@ -59,9 +59,10 @@ if __name__ == '__main__':
 	
 	#Output the results
 	for j in range(0, len(sorted_texts)):
-		arrays = sorted_text[j]
+		arrays = sorted_texts[j]
+		this_texts = decoded_texts[j]
 		for i in range(0, len(arrays)):
-			print(decoded_texts[sorted_texts[j][i]])
+			print(this_texts[arrays[i]])
 			pass
 		
 	print("(" + str(len(sorted_texts)) + " results)")

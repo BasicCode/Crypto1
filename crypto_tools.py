@@ -14,6 +14,18 @@ class crypto_tools(object):
 		key_list = list(permutations(this_key))
 		
 		return key_list
+	
+	#Returns an array of Merkle keys based on a supplied word and desire length
+	def merkleKeys(self, word, length):
+		from itertools import combinations_with_replacement
+		key_list = list(combinations_with_replacement(word, length))
+		
+		#Convert to strings
+		ret_list = []
+		for i in key_list:
+			ret_list.append(''.join(i))
+		
+		return ret_list	
 
 	#Decode a string according to a list of numeric keys
 	def decodeString(self, key_list, cipher):
@@ -116,7 +128,7 @@ class crypto_tools(object):
 		return nice_frequencies
 	
 	#Vigenere decode the string with a particular word
-	def vigenereDecode(word, encoded_txt):
+	def vigenereDecode(self, word, encoded_txt):
 		#work in all upper case
 		word = word.upper()
 		#loop counter
@@ -139,8 +151,7 @@ class crypto_tools(object):
 		return ret_str
 		
 	#make a word list of all words in the file, of any length > 2 letters
-	def simpleWordList(file):
-		key_length = 2
+	def simpleWordList(self, file, key_length):
 		word_list = []
 		with open(file, "r") as f:
 			for line in f:
